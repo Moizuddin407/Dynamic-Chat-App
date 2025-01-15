@@ -1,0 +1,81 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.env
+.env.local
+
+# Python
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+venv.bak/
+.pytest_cache/
+.db
+*.sqlite3
+*.py[cod]
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+*.log
+*.DS_Store
+*.iml
+*.ipr
+*.iws
+target/
+.gradle/
+build/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.orig
+
+# Temporary files
+*.tmp
+*.temp
+*.pid
+*.seed
+
+# Docker
+docker-compose.override.yml
+.dockerignore
+*.container-log
+
+# Generated files
+*.out
+*.map
+*.lock
+coverage/
+dist/
+build/
+
+# Other sensitive files
+*.key
+*.pem
+certificates/
