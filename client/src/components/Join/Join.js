@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import './Join.css';
 
 export default function Join() {
   const [name, setName] = useState('');
@@ -14,7 +15,7 @@ export default function Join() {
   };
 
   return (
-    <div className='jointOuterContainer'>
+    <div className='joinOuterContainer'>
       <div className='joinInnerContainer'>
         <h1 className='heading'>Join</h1>
 
@@ -38,9 +39,15 @@ export default function Join() {
           />
         </div>
 
-        <Link>
+        {/* Do it later using props */}
+        {/* Passing data using query string */}
+        <Link
+          onClick={event => (!name || !room) ? event.preventDefault() : null}
+          to={`/chat?name=${name}&room=${room}`}
+        >
           <button className='button mt-20' type='submit'>Sign In</button>
         </Link>
+
       </div>
     </div>
   );
