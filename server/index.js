@@ -1,32 +1,39 @@
 const express = require('express');
-const socketio = require('socket.io');
-const http = require('http')
+const http = require('http');
+const { Server } = require('socket.io');
+const cors = require('cors');
 
-const port = process.env.PORT || 5000;
-
-// Setting up socket.
-// Creates app
 const app = express();
-// lets app talk to internet
 const server = http.createServer(app);
-// adds real-time communication.
-const io = socketio(server);
+const io = new Server(server, {
+  cors: {
+    origin: 'http://localhost:3000', // Replace with your React app URL
+    methods: ['GET', 'POST'],
+  },
+});
 
-// For connection.
-io.on('connection', (socket) =>{
-    console.log('New Connection Made ! ! !');
+app.use(cors());
 
-    socket.on('disconnect',()=>{
-        console.log('User left');
-    })
-})
+io.on('connection', (socket) => {
+  console.log('New Connection Made ! ! !');
 
+  socket.on('joinRoom', ({ name, room }) => {
+    socket.join(room);
 
-// Routes
-const router = require('./router');
-app.use(router);
+    // Notify the room about the new user
+    io.to(room).emit('message', `${name} has joined the room`);
+    console.log(`User ${name} joined room ${room}`);
+  });
 
+  socket.on('sendMessage', ({ room, message, name }) => {
+    io.to(room).emit('message', `${name}: ${message}`);
+  });
 
-server.listen(port, () => {
-    console.log(`Server Started on Port ${port}`)
-})
+  socket.on('disconnect', () => {
+    console.log('User Disconnected');
+  });
+});
+
+server.listen(5000, () => {
+  console.log('Server Started on Port 5000');
+});
