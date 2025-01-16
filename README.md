@@ -145,7 +145,3 @@ Special thanks to [this YouTube tutorial](https://www.youtube.com/watch?v=ZwFA3Y
 
 > Please note that the code differs from the tutorial as it has been updated to reflect the latest advancements in **React**, **Socket.IO**, and **Express** libraries.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-```
