@@ -6,7 +6,7 @@ let socket;
 export const getSocket = () => {
   if (!socket) {
     console.log('Creating new socket instance');
-    socket = io('https://dynamic-chat-app-server.vercel.app/'); // Only create once
+    socket = io('dynamic-chat-app-server.vercel.app/'); // Only create once
   } else {
     console.log('Using existing socket instance');
   }
