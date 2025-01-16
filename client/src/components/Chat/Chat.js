@@ -89,11 +89,13 @@ import './Chat.css';
 import InfoBar from '../InfoBar/InfoBar';
 import Input from '../Input/Input';
 import Messages from '../Messages/Messages';
+import TextContainer from '../TextContainer/TextContainer'
 
 export default function Chat() {
   const location = useLocation();
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
+  const [users, setUsers] = useState('');
 
   const searchParams = new URLSearchParams(location.search);
   const name = searchParams.get('name');
@@ -139,6 +141,9 @@ export default function Chat() {
     socket.on('message', (message) => {
       setMessages((prevMessages) => [...prevMessages, message]);
     });
+    socket.on("roomData", ({ users }) => {
+      setUsers(users);
+    });
 
     // Return cleanup function to remove the listener on unmount
     return () => {
@@ -161,7 +166,9 @@ export default function Chat() {
         <InfoBar room={room} />
         <Messages messages={messages} name={name} />
         <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
+
       </div>
+      <TextContainer users={users}/>
     </div>
   );
 }
