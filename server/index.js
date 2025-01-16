@@ -2,6 +2,7 @@ const express = require('express');
 const { createServer } = require('http');
 const { Server } = require('socket.io');
 const cors = require('cors');
+const path = require('path');
 
 const router = require('./router');
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./users');
@@ -21,9 +22,19 @@ const io = new Server(server, {
 app.use(cors());
 app.use(router);
 
+// Handle favicon requests (to avoid 404s)
+app.get('/favicon.ico', (req, res) => {
+  res.sendFile(path.join(__dirname, 'favicon.ico'));
+});
+
+// Add a default route for testing
+app.get('/', (req, res) => {
+  res.send('Backend is working!');
+});
+
 // Socket.io logic
 io.on('connection', (socket) => {
-  console.log('We have a new connection!');
+  console.log(`New connection established: ${socket.id}`);
 
   // Handle join event
   socket.on('join', ({ name, room }, callback) => {
