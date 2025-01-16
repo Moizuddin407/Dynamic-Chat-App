@@ -19,71 +19,7 @@ const io = new Server(server, {
 app.use(cors());
 app.use(router);
 
-// io.on('connection', (socket) => {
-//   console.log('We have a new connection ! ! !');
 
-//   // socket.on('join', ({ name, room },callback) => {
-
-//   //   const name1 = name.trim().toLowerCase();
-//   //   const room1 = room.trim().toLowerCase();
-
-//   //   console.log("Data");
-//   //   console.log(name1,room1);
-
-//   //   const {error,user} = addUser(socket.id,name1,room1);
-   
-//   //   if(error){
-//   //     return callback(error);
-//   //   }
-
-//   //   socket.emit('message', {user:'admin',text:`${user.name} welcome to room ${user.room}`});
-//   //   socket.broadcast.to(user.room).emit('message',{user:'admin',text:`${user.name}, has joined`});
-//   //   socket.join(room);
-
-//   //   callback();
-    
-//   // });
-
-//   socket.on('join', ({ name, room }, callback) => {
-//   const name1 = name.trim().toLowerCase();
-//   const room1 = room.trim().toLowerCase();
-
-//   console.log("Data");
-//   console.log(name1, room1);
-
-//   const { error, user } = addUser({
-//     id: socket.id,
-//     name: name1,
-//     room: room1
-//   });
-
-//   if (error) {
-//     return callback(error);
-//   }
-
-//   socket.emit('message', { user: 'admin', text: `${user.name} welcome to room ${user.room}` });
-//   socket.broadcast.to(user.room).emit('message', { user: 'admin', text: `${user.name} has joined` });
-//   socket.join(room1);
-
-//   callback();
-// });
-
-
-//   socket.on('sendMessage',(message,callback)=>{
-//     const user =getUser(socket.id);
-//     io.to(user.room).emit('message',{user:user.name,text:message});
-
-//     callback();
-//   });
-
-//   socket.on('disconnection', () => {
-//     const user = removeUser(socket.id);
-
-//     if(user){
-//       io.to(user.room).emit('message',{user:'admin', text: `${user.name} has left`});
-//     }
-//   });
-// });
 
 io.on('connection', (socket) => {
   console.log('We have a new connection ! ! !');

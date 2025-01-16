@@ -79,3 +79,5 @@ build/
 *.key
 *.pem
 certificates/
+
+vercel.json
