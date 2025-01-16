@@ -58,10 +58,10 @@ const socket = getSocket(); // Get the single socket instance
     <div className="outerContainer">
       <div className="container">
         
-        <InfoBar room={room}/>
+        {/* <InfoBar room={room}/>
         <Messages messages = {messages} name = {name}/>
-        <Input message={message} setMessage={setMessage} sendMessage={sendMessage}/>
-        {/* <input
+        <Input message={message} setMessage={setMessage} sendMessage={sendMessage}/> */}
+        <input
           value={message}
           onChange={(event) => setMessage(event.target.value)}
           onKeyPress={(event) => (event.key === 'Enter' ? sendMessage(event) : null)}
@@ -73,7 +73,7 @@ const socket = getSocket(); // Get the single socket instance
               <strong>{msg.user}</strong>: {msg.text}
             </div>
           ))}
-        </div> */}
+        </div>
       </div>
     </div>
   );
