@@ -48,7 +48,6 @@ io.on('connection', (socket) => {
   const name1 = name.trim().toLowerCase();
   const room1 = room.trim().toLowerCase();
 
-
   console.log("Data");
   console.log(name1, room1);
 
@@ -70,20 +69,9 @@ io.on('connection', (socket) => {
 });
 
 
-  // Handle user sending a message
-  socket.on('sendMessage', (message, callback) => {
-    const user = getUser(socket.id);
-
-    console.log("SendMessage Event:");
-    console.log("Socket ID:", socket.id);
-    console.log("User Retrieved:", user);
-
-    if (!user) {
-      console.error("Error: User not found for socket ID", socket.id);
-      return callback("User not found.");
-    }
-
-    io.to(user.room).emit('message', { user: user.name, text: message });
+  socket.on('sendMessage',(message,callback)=>{
+    const user =getUser(socket.id);
+    io.to(user.room).emit('message',{user:user.name,text:message});
 
     callback();
   });

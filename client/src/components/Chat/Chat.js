@@ -4,7 +4,7 @@ import { getSocket, disconnectSocket } from './socket'; // Import socket utiliti
 import './Chat.css';
 import InfoBar from '../InfoBar/InfoBar';
 import Input from '../Input/Input';
-
+import Messages from '../Messages/Messages';
 export default function Chat() {
   const location = useLocation();
   const [messages, setMessages] = useState([]);
@@ -59,6 +59,7 @@ const socket = getSocket(); // Get the single socket instance
       <div className="container">
         
         <InfoBar room={room}/>
+        <Messages messages = {messages} name = {name}/>
         <Input message={message} setMessage={setMessage} sendMessage={sendMessage}/>
         {/* <input
           value={message}
