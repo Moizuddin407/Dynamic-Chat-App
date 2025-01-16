@@ -15,8 +15,12 @@ const io = new Server(server, {
   cors: {
     origin: 'https://dynamic-chat-app-client.vercel.app', // Replace with your React app URL
     methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type'],  // You can add more headers if needed
+    credentials: true,  // Allow credentials if needed
   },
+  transports: ['websocket', 'polling'],  // Ensure both WebSocket and Polling are allowed
 });
+
 
 // Middleware
 app.use(cors());
